@@ -1,0 +1,42 @@
+
+service: aws-golang-rest-api-with-dynamodb
+app: aws-golang-rest-api-with-dynamodb
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: go1.x
+  profile: AwsPersonal
+  stage: dev
+  region: us-east-1
+  iam: # you can add statements to the Lambda function's IAM Role here
+    role: arn:aws:iam::357863047606:role/service-role/lambda-api-dynamo-watch
+
+
+# you can define service wide environment variables here
+#  environment:
+#    variable1: value1
+
+package:
+  patterns:
+    - '!./**'
+    - ./bin/**
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+
+functions:
+  test:
+    handler: bin/main
+    description: Serves API Gateway request
+    memorySize: 128
+    timeout: 8
+    # role: arn:aws:iam::357863047606:role/service-role/lambda-api-dynamo-watch
+    events:
+      - httpApi:
+          path: /test
+          method: get
+
+resources:
+  Resources:
