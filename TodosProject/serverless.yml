@@ -1,0 +1,110 @@
+
+service: todos-service
+app: todos-service
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: go1.x
+  profile: AwsPersonal
+  stage: dev
+  region: us-east-1
+  environment:  # you can define service wide environment variables here
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iam: # you can add statements to the Lambda function's IAM Role here
+    role: arn:aws:iam::357863047606:role/service-role/lambda-api-dynamo-watch
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+
+functions:
+  create:
+    name: ${self:service}-create
+    handler: bin/create
+    description: Create Todos Service
+    package: 
+      include: ./bin/create
+    memorySize: 128
+    timeout: 8
+    events:
+      - http:
+          path: todos
+          method: post
+          cors: true
+
+  list:
+    name: ${self:service}-list
+    handler: bin/list
+    description: List Todos Service
+    package: 
+      include: ./bin/list
+    memorySize: 128
+    timeout: 8
+    events:
+      - http:
+          path: todos
+          method: get
+          cors: true
+
+  get:
+    name: ${self:service}-get
+    handler: bin/get
+    description: Get Todos Service
+    package: 
+      include: ./bin/get
+    memorySize: 128
+    timeout: 8
+    events:
+      - http:
+          path: todos/{id}
+          method: get
+          cors: true
+
+  delete:
+    name: ${self:service}-delete
+    handler: bin/delete
+    description: Delete Todos Service
+    package: 
+      include: ./bin/delete
+    memorySize: 128
+    timeout: 8
+    events:
+      - http:
+          path: todos/{id}
+          method: delete
+          cors: true
+
+  update:
+    name: ${self:service}-update
+    handler: bin/update
+    description: Update Todos Service
+    package: 
+      include: ./bin/update
+    memorySize: 128
+    timeout: 8
+    events:
+      - http:
+          path: todos/{id}
+          method: put
+          cors: true
+
+
+resources:
+  Resources:
+    TodosDynamodbTable:
+      Type: "AWS::DynamoDB::Table"
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          - 
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}

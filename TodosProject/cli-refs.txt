@@ -1,0 +1,19 @@
+lambda invoke: 
+    sls invoke -f functionName
+    
+lambda invoke local:
+    sls invoke local -f functionName -p path/of/event-json/file
+
+lambda deploy: 
+    sls deploy --verbose
+    sls deploy --stage stage-name --region region-name --function function-name --verbose
+
+generate event: 
+    serverless generate-event -t aws:apiGateway > test-event.json
+
+display information about deployed service: 
+    sls info 
+
+package your entire infrastructure:
+    sls package
+
