@@ -13,16 +13,6 @@ provider:
   iam: # you can add statements to the Lambda function's IAM Role here
     role: arn:aws:iam::357863047606:role/service-role/lambda-api-dynamo-watch
 
-
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
-package:
-  patterns:
-    - '!./**'
-    - ./bin/**
-
 custom:
   stage: ${opt:stage, self:provider.stage}
 
@@ -30,13 +20,13 @@ functions:
   test:
     handler: bin/main
     description: Serves API Gateway request
+    package: 
+      include: ./bin/main
     memorySize: 128
     timeout: 8
-    # role: arn:aws:iam::357863047606:role/service-role/lambda-api-dynamo-watch
     events:
-      - httpApi:
+      - http:
           path: /test
           method: get
+          cors: true
 
-resources:
-  Resources:
