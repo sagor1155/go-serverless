@@ -19,6 +19,8 @@ import (
 type Response events.APIGatewayProxyResponse
 type Request events.APIGatewayProxyRequest
 
+var db *dynamodb.DynamoDB
+
 type Todo struct {
 	Id      string `json:"id,omitempty"`
 	Title   string `json:"title"`
@@ -48,14 +50,29 @@ func Handler(ctx context.Context, req Request) (Response, error) {
 
 	// create db client
 	sess, _ := session.NewSession()
-	db := dynamodb.New(sess)
+	db = dynamodb.New(sess)
 	fmt.Println("DynamoDB Initialized")
 
+	// update dynamo db
+	err = CreateTodo(todo, tableName)
+	if err != nil {
+		return ReturnServerError(http.StatusInternalServerError, "Error saving item into DB", err)
+	}
+
+	return ReturnOK(http.StatusOK, "Successfully saved todo item.", todo)
+}
+
+func main() {
+	lambda.Start(Handler)
+}
+
+func CreateTodo(todo Todo, tableName string) error {
 	// update dynamo db
 	inputAttr, err := dynamodbattribute.MarshalMap(todo)
 	if err != nil {
 		fmt.Println("Error marshalling item: ", err.Error())
-		return ReturnServerError(http.StatusInternalServerError, "Error marshalling item", err)
+		// return ReturnServerError(http.StatusInternalServerError, "Error marshalling item", err)
+		return err
 	}
 
 	input := &dynamodb.PutItemInput{
@@ -66,14 +83,10 @@ func Handler(ctx context.Context, req Request) (Response, error) {
 	_, err = db.PutItem(input)
 	if err != nil {
 		fmt.Println("Error saving item into DB: ", err.Error())
-		return ReturnServerError(http.StatusInternalServerError, "Error saving item into DB", err)
+		// return ReturnServerError(http.StatusInternalServerError, "Error saving item into DB", err)
+		return err
 	}
 
-	return ReturnOK(http.StatusOK, "Successfully saved todo item.", todo)
-}
-
-func main() {
-	lambda.Start(Handler)
 }
 
 func ReturnOK(status int, message string, data interface{}) (Response, error) {
