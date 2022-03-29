@@ -53,7 +53,6 @@ func Handler(ctx context.Context, req Request) (Response, error) {
 	db = dynamodb.New(sess)
 	fmt.Println("DynamoDB Initialized")
 
-	// update dynamo db
 	err = CreateTodo(todo, tableName)
 	if err != nil {
 		return ReturnServerError(http.StatusInternalServerError, "Error saving item into DB", err)
@@ -67,11 +66,9 @@ func main() {
 }
 
 func CreateTodo(todo Todo, tableName string) error {
-	// update dynamo db
 	inputAttr, err := dynamodbattribute.MarshalMap(todo)
 	if err != nil {
 		fmt.Println("Error marshalling item: ", err.Error())
-		// return ReturnServerError(http.StatusInternalServerError, "Error marshalling item", err)
 		return err
 	}
 
@@ -83,14 +80,13 @@ func CreateTodo(todo Todo, tableName string) error {
 	_, err = db.PutItem(input)
 	if err != nil {
 		fmt.Println("Error saving item into DB: ", err.Error())
-		// return ReturnServerError(http.StatusInternalServerError, "Error saving item into DB", err)
 		return err
 	}
 
+	return nil
 }
 
 func ReturnOK(status int, message string, data interface{}) (Response, error) {
-	// generate response
 	body := map[string]string{
 		"message": message,
 		"status":  "success",
@@ -108,7 +104,6 @@ func ReturnOK(status int, message string, data interface{}) (Response, error) {
 }
 
 func ReturnBadRequest(status int, message string, err error) (Response, error) {
-	// generate response
 	body := map[string]string{
 		"message": message,
 		"status":  "error",
@@ -126,7 +121,6 @@ func ReturnBadRequest(status int, message string, err error) (Response, error) {
 }
 
 func ReturnServerError(status int, message string, err error) (Response, error) {
-	// generate response
 	body := map[string]string{
 		"message": message,
 		"status":  "error",

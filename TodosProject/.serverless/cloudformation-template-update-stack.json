@@ -108,7 +108,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/todos-service/dev/1648212894289-2022-03-25T12:54:54.289Z/todos-service.zip"
+          "S3Key": "serverless/todos-service/dev/1648545513621-2022-03-29T09:18:33.621Z/todos-service.zip"
         },
         "Handler": "bin/create",
         "Runtime": "go1.x",
@@ -121,7 +121,7 @@
             "DYNAMODB_TABLE": "todos-service-dev"
           }
         },
-        "Role": "arn:aws:iam::357863047606:role/service-role/lambda-api-dynamo-watch"
+        "Role": "arn:aws:iam::577230277200:role/lambda-api-dynamo-watch"
       },
       "DependsOn": [
         "CreateLogGroup"
@@ -134,7 +134,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/todos-service/dev/1648212894289-2022-03-25T12:54:54.289Z/todos-service.zip"
+          "S3Key": "serverless/todos-service/dev/1648545513621-2022-03-29T09:18:33.621Z/todos-service.zip"
         },
         "Handler": "bin/list",
         "Runtime": "go1.x",
@@ -147,7 +147,7 @@
             "DYNAMODB_TABLE": "todos-service-dev"
           }
         },
-        "Role": "arn:aws:iam::357863047606:role/service-role/lambda-api-dynamo-watch"
+        "Role": "arn:aws:iam::577230277200:role/lambda-api-dynamo-watch"
       },
       "DependsOn": [
         "ListLogGroup"
@@ -160,7 +160,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/todos-service/dev/1648212894289-2022-03-25T12:54:54.289Z/todos-service.zip"
+          "S3Key": "serverless/todos-service/dev/1648545513621-2022-03-29T09:18:33.621Z/todos-service.zip"
         },
         "Handler": "bin/get",
         "Runtime": "go1.x",
@@ -173,7 +173,7 @@
             "DYNAMODB_TABLE": "todos-service-dev"
           }
         },
-        "Role": "arn:aws:iam::357863047606:role/service-role/lambda-api-dynamo-watch"
+        "Role": "arn:aws:iam::577230277200:role/lambda-api-dynamo-watch"
       },
       "DependsOn": [
         "GetLogGroup"
@@ -186,7 +186,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/todos-service/dev/1648212894289-2022-03-25T12:54:54.289Z/todos-service.zip"
+          "S3Key": "serverless/todos-service/dev/1648545513621-2022-03-29T09:18:33.621Z/todos-service.zip"
         },
         "Handler": "bin/delete",
         "Runtime": "go1.x",
@@ -199,7 +199,7 @@
             "DYNAMODB_TABLE": "todos-service-dev"
           }
         },
-        "Role": "arn:aws:iam::357863047606:role/service-role/lambda-api-dynamo-watch"
+        "Role": "arn:aws:iam::577230277200:role/lambda-api-dynamo-watch"
       },
       "DependsOn": [
         "DeleteLogGroup"
@@ -212,7 +212,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/todos-service/dev/1648212894289-2022-03-25T12:54:54.289Z/todos-service.zip"
+          "S3Key": "serverless/todos-service/dev/1648545513621-2022-03-29T09:18:33.621Z/todos-service.zip"
         },
         "Handler": "bin/update",
         "Runtime": "go1.x",
@@ -225,64 +225,64 @@
             "DYNAMODB_TABLE": "todos-service-dev"
           }
         },
-        "Role": "arn:aws:iam::357863047606:role/service-role/lambda-api-dynamo-watch"
+        "Role": "arn:aws:iam::577230277200:role/lambda-api-dynamo-watch"
       },
       "DependsOn": [
         "UpdateLogGroup"
       ]
     },
-    "CreateLambdaVersionyN44X8IGdVss66xMix3JwnLTXbKVPJvHHKNjl5NNSHU": {
+    "CreateLambdaVersion2YREQ1N751az3llvpwaZDmEh5BjkGquDbxTiCsieQWQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateLambdaFunction"
         },
-        "CodeSha256": "NmE2PVlrGxwqJF2hwYSiFXvDBDdRclq6Fvj5faVK1qQ=",
+        "CodeSha256": "YhG+xc6FpeghpviZTn9TWJHBbO0MIc0MusTu1dSjkc0=",
         "Description": "Create Todos Service"
       }
     },
-    "ListLambdaVersionnVvD1pypxcNhQHAN0VS00oDCDzEeAtncGyF5IyKqp5g": {
+    "ListLambdaVersionO53wS7xMjY9737xtfOA11eDDbbssVWi0Ra3zLKFkA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListLambdaFunction"
         },
-        "CodeSha256": "NmE2PVlrGxwqJF2hwYSiFXvDBDdRclq6Fvj5faVK1qQ=",
+        "CodeSha256": "YhG+xc6FpeghpviZTn9TWJHBbO0MIc0MusTu1dSjkc0=",
         "Description": "List Todos Service"
       }
     },
-    "GetLambdaVersionjFk4kB9K0f0oo8ePC3HgsEIzRj8YHUKEXe7O1Sp3JU": {
+    "GetLambdaVersionwnPjC5hHyidbVY5XjoXD6qdNXhuxuoYojMRgPYiA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetLambdaFunction"
         },
-        "CodeSha256": "NmE2PVlrGxwqJF2hwYSiFXvDBDdRclq6Fvj5faVK1qQ=",
+        "CodeSha256": "YhG+xc6FpeghpviZTn9TWJHBbO0MIc0MusTu1dSjkc0=",
         "Description": "Get Todos Service"
       }
     },
-    "DeleteLambdaVersionvoYTaOGuB5GXCgRyoujZ4YoBFuvbWQxbnIhGjtfeHk4": {
+    "DeleteLambdaVersionfFjrLUzdloLtbfgXiZnql4rZYKLEinH8prUNSAcGw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeleteLambdaFunction"
         },
-        "CodeSha256": "NmE2PVlrGxwqJF2hwYSiFXvDBDdRclq6Fvj5faVK1qQ=",
+        "CodeSha256": "YhG+xc6FpeghpviZTn9TWJHBbO0MIc0MusTu1dSjkc0=",
         "Description": "Delete Todos Service"
       }
     },
-    "UpdateLambdaVersionSIuP7FCko1dUbCkJGwtfnS0ajNBMUJvZ9bJrxrVOw": {
+    "UpdateLambdaVersionrdaXlXt0W6iO3JoCfdwXBaFe6FjWCzUsJsasRvVJ0Rg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdateLambdaFunction"
         },
-        "CodeSha256": "NmE2PVlrGxwqJF2hwYSiFXvDBDdRclq6Fvj5faVK1qQ=",
+        "CodeSha256": "YhG+xc6FpeghpviZTn9TWJHBbO0MIc0MusTu1dSjkc0=",
         "Description": "Update Todos Service"
       }
     },
@@ -645,7 +645,7 @@
         "UpdateLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1648212892477": {
+    "ApiGatewayDeployment1648545511371": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -884,7 +884,7 @@
     "CreateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateLambdaVersionyN44X8IGdVss66xMix3JwnLTXbKVPJvHHKNjl5NNSHU"
+        "Ref": "CreateLambdaVersion2YREQ1N751az3llvpwaZDmEh5BjkGquDbxTiCsieQWQ"
       },
       "Export": {
         "Name": "sls-todos-service-dev-CreateLambdaFunctionQualifiedArn"
@@ -893,7 +893,7 @@
     "ListLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListLambdaVersionnVvD1pypxcNhQHAN0VS00oDCDzEeAtncGyF5IyKqp5g"
+        "Ref": "ListLambdaVersionO53wS7xMjY9737xtfOA11eDDbbssVWi0Ra3zLKFkA"
       },
       "Export": {
         "Name": "sls-todos-service-dev-ListLambdaFunctionQualifiedArn"
@@ -902,7 +902,7 @@
     "GetLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetLambdaVersionjFk4kB9K0f0oo8ePC3HgsEIzRj8YHUKEXe7O1Sp3JU"
+        "Ref": "GetLambdaVersionwnPjC5hHyidbVY5XjoXD6qdNXhuxuoYojMRgPYiA"
       },
       "Export": {
         "Name": "sls-todos-service-dev-GetLambdaFunctionQualifiedArn"
@@ -911,7 +911,7 @@
     "DeleteLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteLambdaVersionvoYTaOGuB5GXCgRyoujZ4YoBFuvbWQxbnIhGjtfeHk4"
+        "Ref": "DeleteLambdaVersionfFjrLUzdloLtbfgXiZnql4rZYKLEinH8prUNSAcGw"
       },
       "Export": {
         "Name": "sls-todos-service-dev-DeleteLambdaFunctionQualifiedArn"
@@ -920,7 +920,7 @@
     "UpdateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdateLambdaVersionSIuP7FCko1dUbCkJGwtfnS0ajNBMUJvZ9bJrxrVOw"
+        "Ref": "UpdateLambdaVersionrdaXlXt0W6iO3JoCfdwXBaFe6FjWCzUsJsasRvVJ0Rg"
       },
       "Export": {
         "Name": "sls-todos-service-dev-UpdateLambdaFunctionQualifiedArn"
