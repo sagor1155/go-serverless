@@ -1,0 +1,12 @@
+Run dynamodb local instance:
+$ docker run --name dynamodb -p 8000:8000 -d amazon/dynamodb-local -jar DynamoDBLocal.jar
+
+List tables:
+$ aws dynamodb list-tables --endpoint-url http://localhost:8000
+
+Generate dynamodb schema sample:
+$ aws dynamodb create-table --generate-cli-skeleton > dynamodb-schema-sample.json
+
+Create table:
+$ aws dynamodb create-table --cli-input-json file://dynamodb-schema-user.json --endpoint-url http://localhost:8000
+
