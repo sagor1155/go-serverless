@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-lambda-go/lambdacontext"
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
@@ -36,7 +37,7 @@ func Handler(ctx context.Context, req Request) (Response, error) {
 	fmt.Println("Table Name: ", tableName)
 
 	// create db client
-	sess, _ := session.NewSession()
+	sess, _ := session.NewSession(&aws.Config{Endpoint: aws.String("http:localhost:8000")})
 	db = dynamodb.New(sess)
 	fmt.Println("DynamoDB Initialized")
 

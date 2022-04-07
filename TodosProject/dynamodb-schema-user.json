@@ -1,5 +1,5 @@
 {
-    "TableName": "User",
+    "TableName": "todos-service-dev",
     "KeySchema": [
         {
             "AttributeName": "id",
